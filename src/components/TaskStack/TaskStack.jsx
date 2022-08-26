@@ -1,6 +1,8 @@
 import React from 'react';
-
+import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+
+import About from '../About/About';
 import AddTask from '../AddTask/AddTask';
 import { Header } from '../Header/Header';
 import { Tasks } from '../Tasks/Tasks';
@@ -62,20 +64,32 @@ export const TaskStack = () => {
   };
 
   return (
-    <>
+    <div className="container">
       <Header
         onAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
       />
-
-      {showAddTask && <AddTask onAdd={addTask} />}
-
-      {/* Conditional to show if there is more than 0 tasks, show the tasks, and if not more than 0, show the message 'No tasks remaining' */}
-      {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
-      ) : (
-        'No tasks remaining!'
-      )}
-    </>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              {showAddTask && <AddTask onAdd={addTask} />}
+              {/* Conditional to show if there is more than 0 tasks, show the tasks, and if not more than 0, show the message 'No tasks remaining' */}
+              {tasks.length > 0 ? (
+                <Tasks
+                  tasks={tasks}
+                  onDelete={deleteTask}
+                  onToggle={toggleReminder}
+                />
+              ) : (
+                'No tasks remaining!'
+              )}
+            </>
+          }
+        />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </div>
   );
 };
