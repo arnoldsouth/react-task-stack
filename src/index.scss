@@ -124,15 +124,15 @@ body {
 .form-control-check {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
 }
 
 .form-control-check label {
-  flex: 1;
+  flex: 0;
 }
 
 .form-control-check input {
-  flex: 2;
+  flex: 0;
   height: 20px;
 }
 
